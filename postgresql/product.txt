@@ -1,0 +1,10 @@
+CREATE TABLE Products (
+    id SERIAL PRIMARY KEY,
+    article_no VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    in_price DECIMAL(10, 2) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    unit VARCHAR(50) NOT NULL,
+    in_stock INTEGER NOT NULL,
+    description TEXT
+);
