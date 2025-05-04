@@ -70,12 +70,30 @@ fastify.put('/products/:id', async (request, reply) => {
   const { id } = request.params;
   const { article_no, name, in_price, price, unit, in_stock, description } = request.body;
   try {
-    const [updatedRows] = await product.update
-  }
-  catch (error){
+    const [updatedRows] = await product.update({
+      article_no,
+      name,
+      in_price,
+      price,
+      unit,
+      in_stock,
+      description,
+    }, {
+      where: { id: id }
+    });
+
+    if (updatedRows > 0) {
+      const updatedProduct = await product.findByPk(id);
+      reply.send(updatedProduct);
+    } else {
+      reply.status(404).send({ error: 'Product not found' });
+    }
+  } catch (error) {
     console.error('Error updating Product:', error);
+    reply.status(500).send({ error: 'Internal Server Error' });
   }
 });
+
 
 // delete product
 fastify.delete('/products/:id', async (request, reply) => {

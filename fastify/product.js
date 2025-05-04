@@ -2,7 +2,9 @@
 import { DataTypes } from 'sequelize';
 import sequelize from './sequelize.js';  // Ensure sequelize instance is correctly imported
 
-const Product = sequelize.define('Product', {
+await sequelize.sync({ force: true });
+
+const Product = sequelize.define('Product', { // Capitalized model name
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -38,8 +40,9 @@ const Product = sequelize.define('Product', {
     allowNull: true,
   },
 }, {
-  tableName: 'Products',
+  tableName: 'products', // ensure lowercase plural
   timestamps: false
 });
 
 export default Product;
+
