@@ -1,8 +1,8 @@
 modules = ["nodejs-20"]
 [nix]
 channel = "stable-24_05"
-packages = ["postgresql"]
+
 
 [[ports]]
-localPort = 5000
+localPort = 5173
 externalPort = 80
