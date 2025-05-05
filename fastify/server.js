@@ -2,7 +2,7 @@
 // server.js
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
-import product from './product.js';  // Ensure proper extension here
+import product from './product.js';  
 
 const fastify = Fastify({ logger: true });
 
