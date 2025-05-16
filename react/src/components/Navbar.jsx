@@ -14,10 +14,11 @@ const Navbar = ({ menuNames }) => {
         <hr className='border-2 border-blue-600 mb-4 rounded w-48 ' />
         <div className='flex flex-col items-center'>
             {menuNames.slice(1).map((name, index) => (
-            <div key={index + 1} className='rounded-2xl flex flex-row items-center justify-start w-full h-12 px-4 hover:bg-blue-100 cursor-pointer'>
-                <img src={menuIcons[index + 1]} alt={name} className='w-6 h-6 mr-2' />
-                <p className='text-lg'>{name}</p>
-            </div>
+                <div key={index + 1} className={`rounded-2xl flex flex-row items-center justify-start w-full h-12 px-4 hover:bg-blue-100 cursor-pointer
+                ${index === 4 ? 'bg-blue-200' : ''}`}>
+                    <img src={menuIcons[index + 1]} alt={name} className='w-6 h-6 mr-2' />
+                    <p className='text-lg'>{name}</p>
+                </div>
             ))}
         </div>
         </div>
