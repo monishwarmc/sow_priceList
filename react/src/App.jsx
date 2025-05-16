@@ -32,20 +32,18 @@ const App = () => {
   return (
     <div className='flex flex-col h-screen'>
       <Header selected={selectedLanguage} onChange={setSelectedLanguage} />
-      <div className='flex flex-row justify-start h-full items-center bg-gray-100 text-black'>
+      <div className='flex flex-row justify-start h-full bg-gray-100 text-black'>
         <Navbar menuNames={menuNames} />
-        <div>
+        <div className='w-full'>
           {/* top of list */}
           <div>
 
           </div>
           {/* price list */}
           <div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-row items-center justify-center'>
                 {headings.map((name, index) => (
-                    <div key={index} className='rounded-2xl flex flex-row items-center justify-start w-full h-12 px-4 hover:bg-blue-100 cursor-pointer'>
-                        <p className='text-lg'>{name}</p>
-                    </div>
+                    <h1 key={index} className='text-lg'>{name}</h1>
                 ))}
             </div>
           </div>
