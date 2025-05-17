@@ -224,106 +224,136 @@ const App = () => {
       <Header selected={selectedLanguage} onChange={setSelectedLanguage} />
       <div className='flex flex-row h-full bg-gray-100 text-black'>
         <Navbar menuNames={menuNames} />
-        <div className='w-full ml-60 mt-24 flex flex-col'>
+        <div className='w-full lg:ml-60 lg:mt-24 ml-0 mt-16 flex flex-col'>
           {/* Top of list */}
-          <div className='h-24 w-full flex justify-between items-center px-24 bg-white shadow-sm'>
-            <div className='flex flex-col gap-2'>
+          <div className='md:h-24 h-20 w-full flex md:justify-between justify-center items-center px:9 md:px-24 bg-white shadow-sm'>
+            <div className='flex flex-col md:gap-2  gap-1'>
               <input
                 type='text'
                 placeholder={headings[0] ? `Search ${headings[0]}` : 'Search Article No'}
                 value={articleSearch}
                 onChange={(e) => setArticleSearch(e.target.value)}
-                className='border border-gray-300 rounded-md px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                className='border border-gray-300 rounded-md px-3 py-1 md:w-64 w-48 focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
               <input
                 type='text'
                 placeholder={headings[1] ? `Search ${headings[1]}` : 'Search Product'}
                 value={nameSearch}
                 onChange={(e) => setNameSearch(e.target.value)}
-                className='border border-gray-300 rounded-md px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                className='border border-gray-300 rounded-md px-3 py-1 md:w-64 w-48 focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
             </div>
             <div className='flex gap-3'>
               <button
                 onClick={handleAddNewProduct}
-                className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition'
+                className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition hidden lg:block'
               >
                 Add New Product
               </button>
               <button
                 onClick={handlePriceList}
-                className='bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition'
+                className='bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition hidden lg:block'
               >
                 Print List
               </button>
               <button
                 onClick={handleAdvancedMode}
-                className='bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition'
+                className='bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition hidden lg:block'
               >
                 Advanced Mode
               </button>
             </div>
           </div>
-          {/* Price list for full */}
-          <div className='flex-1 px-24 w-full overflow-y-auto'>
-            <table ref={tableRef} className='w-full' style={{ display: 'grid' }}>
-              <thead style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '1.5fr 3fr 1fr 1fr 2fr 1fr 3fr 0.5fr' 
-              }}>
-                <tr style={{ display: 'contents' }}>
-                  {headings.map((name, index) => (
-                    <th key={index} className='text-lg text-left py-2'>
-                      {name}
-                    </th>
-                  ))}
-                  <th className='text-lg text-left py-2'></th>
-                </tr>
-              </thead>
-              <tbody style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '1.5fr 3fr 1fr 1fr 2fr 1fr 3fr 0.5fr',
-              }}>
-                {filteredProducts.map((product) => (
-                  <tr key={product.id} style={{ display: 'contents' }}>
-                    <td className='text-left py-2'>{product.article_no}</td>
-                    <td className='text-left py-2'>{product.name}</td>
-                    <td className='text-left py-2'>{product.in_price}</td>
-                    <td className='text-left py-2'>{product.price}</td>
-                    <td className='text-left py-2'>{product.unit}</td>
-                    <td className='text-left py-2'>{product.in_stock}</td>
-                    <td className='text-left py-2'>{product.description}</td>
-                    <td className='text-left py-2 relative'>
-                      <button
-                        onClick={() => toggleDropdown(product.id)}
-                        className='text-gray-600 hover:text-gray-800'
-                      >
-                        ⋮
-                      </button>
-                      {dropdownId === product.id && (
-                        <div className='absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-10'>
-                          <button
-                            onClick={() => handleEditProduct(product)}
-                            className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => handleDeleteProduct(product.id)}
-                            className='block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100'
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+
+
+
+            {/* Price list */}
+            <div className="flex-1 px-6 w-auto overflow-y-auto">
+              {/* HEADERS */}
+              <div className="grid grid-cols-2 md:grid-cols-8 font-semibold text-left py-2 border-b">
+                {/* Mobile: Price + Action */}
+                <div className="block md:hidden">{headings[1]}</div>
+                <div className="block md:hidden">{headings[3]}</div>
+                <div className="block md:hidden"></div>
+
+                {/* Desktop: Full headers */}
+                <div className="hidden md:block">{headings[0]}</div>
+                <div className="hidden md:block">{headings[1]}</div>
+                <div className="hidden md:block">{headings[2]}</div>
+                <div className="hidden md:block">{headings[3]}</div>
+                <div className="hidden md:block">{headings[4]}</div>
+                <div className="hidden md:block">{headings[5]}</div>
+                <div className="hidden md:block">{headings[6]}</div>
+                <div className="hidden md:block"></div>
+              </div>
+
+              {/* ROWS */}
+              {filteredProducts.map(product => (
+                <div
+                  key={product.id}
+                  className="grid grid-cols-3 md:grid-cols-8 items-center py-2 border-b"
+                >
+                  {/* Mobile View */}
+                  <div className="block md:hidden">{product.name}</div>
+                  <div className="block md:hidden">{product.price}</div>
+                  <div className=" md:hidden flex justify-end relative">
+                    <button onClick={() => toggleDropdown(product.id)} className="text-gray-600 hover:text-gray-800">
+                      ⋮
+                    </button>
+                    {dropdownId === product.id && (
+                      <div className="absolute right-0 top-full mt-1 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                        <button
+                          onClick={() => handleEditProduct(product)}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteProduct(product.id)}
+                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Desktop View */}
+                  <div className="hidden md:block">{product.article_no}</div>
+                  <div className="hidden md:block">{product.name}</div>
+                  <div className="hidden md:block">{product.in_price}</div>
+                  <div className="hidden md:block">{product.price}</div>
+                  <div className="hidden md:block">{product.unit}</div>
+                  <div className="hidden md:block">{product.in_stock}</div>
+                  <div className="hidden md:block">{product.description}</div>
+                  <div className="hidden md:flex justify-end relative">
+                    <button onClick={() => toggleDropdown(product.id)} className="text-gray-600 hover:text-gray-800">
+                      ⋮
+                    </button>
+                    {dropdownId === product.id && (
+                      <div className="absolute right-0 top-full mt-1 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                        <button
+                          onClick={() => handleEditProduct(product)}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteProduct(product.id)}
+                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
-      </div>
+
 
       {/* Price List Preview Modal */}
       {showPreview && (
@@ -353,10 +383,10 @@ const App = () => {
       {showAddProduct && (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
           <div className='bg-white p-6 rounded-lg w-full max-w-md'>
-            <h2 className='text-xl font-bold mb-4'>Add New Product</h2>
+            <h2 className='text-black  text-xl font-bold mb-4'> New Product</h2>
             <form onSubmit={handleSubmitProduct} className='flex flex-col gap-4'>
               <div>
-                <label className='block text-sm font-medium'>Article No *</label>
+                <label className='block text-black text-sm font-medium'>Article No *</label>
                 <input
                   type='text'
                   name='article_no'
@@ -367,7 +397,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Name *</label>
+                <label className='block text-black text-sm font-medium'>Name *</label>
                 <input
                   type='text'
                   name='name'
@@ -378,7 +408,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Purchase Price *</label>
+                <label className='block text-black  text-sm font-medium'>Purchase Price *</label>
                 <input
                   type='number'
                   name='in_price'
@@ -390,7 +420,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Price *</label>
+                <label className='block text-black  text-sm font-medium'>Price *</label>
                 <input
                   type='number'
                   name='price'
@@ -402,7 +432,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Unit *</label>
+                <label className='block text-black  text-sm font-medium'>Unit *</label>
                 <input
                   type='text'
                   name='unit'
@@ -413,7 +443,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>In Stock *</label>
+                <label className='block text-black  text-sm font-medium'>In Stock *</label>
                 <input
                   type='number'
                   name='in_stock'
@@ -424,7 +454,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Description</label>
+                <label className='block  text-black text-sm font-medium'>Description</label>
                 <textarea
                   name='description'
                   value={newProduct.description}
@@ -456,10 +486,10 @@ const App = () => {
       {showEditProduct && editProduct && (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
           <div className='bg-white p-6 rounded-lg w-full max-w-md'>
-            <h2 className='text-xl font-bold mb-4'>Edit Product</h2>
+            <h2 className='text-xl font-bold mb-4  text-black '>Edit Product</h2>
             <form onSubmit={handleSubmitEditProduct} className='flex flex-col gap-4'>
               <div>
-                <label className='block text-sm font-medium'>Article No *</label>
+                <label className='block text-sm font-medium text-black '>Article No *</label>
                 <input
                   type='text'
                   name='article_no'
@@ -470,7 +500,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Name *</label>
+                <label className='block  text-black text-sm font-medium'>Name *</label>
                 <input
                   type='text'
                   name='name'
@@ -481,7 +511,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Purchase Price *</label>
+                <label className='block  text-black text-sm font-medium'>Purchase Price *</label>
                 <input
                   type='number'
                   name='in_price'
@@ -493,7 +523,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Price *</label>
+                <label className='block  text-black text-sm font-medium'>Price *</label>
                 <input
                   type='number'
                   name='price'
@@ -505,7 +535,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Unit *</label>
+                <label className='block  text-black text-sm font-medium'>Unit *</label>
                 <input
                   type='text'
                   name='unit'
@@ -516,7 +546,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>In Stock *</label>
+                <label className='block  text-black text-sm font-medium'>In Stock *</label>
                 <input
                   type='number'
                   name='in_stock'
@@ -527,7 +557,7 @@ const App = () => {
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium'>Description</label>
+                <label className='block  text-black text-sm font-medium'>Description</label>
                 <textarea
                   name='description'
                   value={editProduct.description}
