@@ -264,7 +264,7 @@ const App = () => {
               </button>
             </div>
           </div>
-          {/* Price list */}
+          {/* Price list for full */}
           <div className='flex-1 px-24 w-full overflow-y-auto'>
             <table ref={tableRef} className='w-full' style={{ display: 'grid' }}>
               <thead style={{ 
@@ -282,7 +282,7 @@ const App = () => {
               </thead>
               <tbody style={{ 
                 display: 'grid', 
-                gridTemplateColumns: '1.5fr 3fr 1fr 1fr 2fr 1fr 3fr 0.5fr' 
+                gridTemplateColumns: '1.5fr 3fr 1fr 1fr 2fr 1fr 3fr 0.5fr',
               }}>
                 {filteredProducts.map((product) => (
                   <tr key={product.id} style={{ display: 'contents' }}>

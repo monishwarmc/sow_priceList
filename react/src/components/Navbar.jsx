@@ -9,7 +9,7 @@ const menuIcons = [
   
 const Navbar = ({ menuNames }) => {
     return (
-        <div className='z-10 pt-2 w-60 h-screen mt-24 fixed border-r-8 flex flex-col items-center'>
+        <div className='hidden lg:z-10 lg:pt-2 lg:w-60 lg:h-screen lg:mt-24 lg:fixed lg:border-r-8 lg:flex lg:flex-col lg:items-center'>
         <h1 className='text-2xl font-bold mb-2'>{menuNames[0] || 'Menu'}</h1>
         <hr className='border-2 border-blue-600 mb-4 rounded w-48 ' />
         <div className='flex flex-col items-center'>
