@@ -99,14 +99,14 @@ const App = () => {
             <div className='flex flex-col gap-2'>
               <input
                 type='text'
-                placeholder='Search Article No'
+                placeholder={`Search ${headings[0]}`}
                 value={articleSearch}
                 onChange={(e) => setArticleSearch(e.target.value)}
                 className='border border-gray-300 rounded-md px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
               <input
                 type='text'
-                placeholder='Search Product'
+                placeholder={`Search ${headings[1]}`}
                 value={nameSearch}
                 onChange={(e) => setNameSearch(e.target.value)}
                 className='border border-gray-300 rounded-md px-3 py-1 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500'
