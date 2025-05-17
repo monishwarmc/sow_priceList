@@ -11,7 +11,7 @@ import {
 
   const Header = ({ selected, onChange }) => {
     return (
-      <div className='flex flex-row justify-between items-center bg-blue-500 w-screen h-24 text-white p-4'>
+      <div className='flex flex-row justify-between items-center bg-blue-500 w-screen h-24 text-white p-4 fixed'>
         <div className='flex flex-row items-center justify-center ml-32'>
           <img src="/account.png" alt="Logo" className='w-16 h-16 mr-4' />
           <div>

@@ -220,11 +220,11 @@ const App = () => {
   }
 
   return (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-screen w-screen'>
       <Header selected={selectedLanguage} onChange={setSelectedLanguage} />
       <div className='flex flex-row h-full bg-gray-100 text-black'>
         <Navbar menuNames={menuNames} />
-        <div className='w-full flex flex-col'>
+        <div className='w-full ml-60 mt-24 flex flex-col'>
           {/* Top of list */}
           <div className='h-24 w-full flex justify-between items-center px-24 bg-white shadow-sm'>
             <div className='flex flex-col gap-2'>
